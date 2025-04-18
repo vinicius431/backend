@@ -11,11 +11,11 @@ const upload = multer({ storage });
 const Usuario = require("./models/Usuario");
 
 const app = express();
-const PORT = process.env.PORT || 3001;;
-const JWT_SECRET = "segredo_super_ultra_forte";
+const PORT = process.env.PORT || 3001;
+const JWT_SECRET = process.env.JWT_SECRET || "segredo_super_ultra_forte";
 
-// Conexão com MongoDB Atlas
-mongoose.connect(process.env.MONGO_URL, {
+// ✅ CORRIGIDO PARA USAR A VARIÁVEL URL_MONGO
+mongoose.connect(process.env.URL_MONGO, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -182,7 +182,7 @@ app.post("/auth/recarregar-plano", async (req, res) => {
   }
 });
 
-// Iniciar servidor
+// ✅ Iniciar servidor com porta dinâmica (para funcionar no Railway)
 app.listen(PORT, () => {
-  console.log(`🚀 Backend rodando em http://localhost:${PORT}`);
+  console.log(`🚀 Backend rodando na porta ${PORT}`);
 });
