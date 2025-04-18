@@ -11,7 +11,7 @@ const upload = multer({ storage });
 const Usuario = require("./models/Usuario");
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;;
 const JWT_SECRET = "segredo_super_ultra_forte";
 
 // Conexão com MongoDB Atlas
